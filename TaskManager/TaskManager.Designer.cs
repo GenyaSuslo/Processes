@@ -266,14 +266,15 @@
             this.toolStripSeparator4,
             this.toolStripMenuItemDestroy});
 			this.contextMenuProcList.Name = "contextMenuStrip1";
-			this.contextMenuProcList.Size = new System.Drawing.Size(169, 54);
+			this.contextMenuProcList.Size = new System.Drawing.Size(181, 76);
 			this.contextMenuProcList.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuProcList_Opening);
 			// 
 			// toolStripMenuItemOpenFileLocation
 			// 
 			this.toolStripMenuItemOpenFileLocation.Name = "toolStripMenuItemOpenFileLocation";
-			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(168, 22);
+			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(180, 22);
 			this.toolStripMenuItemOpenFileLocation.Text = "Open file location";
+			this.toolStripMenuItemOpenFileLocation.Click += new System.EventHandler(this.toolStripMenuItemOpenFileLocation_Click);
 			// 
 			// toolStripSeparator4
 			// 

@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Schema;
 using System.Runtime.InteropServices;
+using System.Windows.Forms.VisualStyles;
+using System.Net.Configuration;
 
 namespace TaskManager
 {
@@ -131,5 +133,29 @@ namespace TaskManager
 		{
 			this.TopMost = mainMenuTopmost.Checked;
 		}
+
+		private void toolStripMenuItemOpenFileLocation_Click(object sender, EventArgs e)
+		{
+			string filename = processes[Convert.ToInt32(listViewProcesses.SelectedItems[0].Name)].MainModule.FileName;
+			//MessageBox.Show(this, filename, "Location", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			ShellExecute(this.Handle, "open", "explorer.exe", $"/select, \"{filename}\"","", 1);
+			//filename = filename.Remove(filename.LastIndexOf("\\"));
+			//Process.Start("explorer", filename);
+			//Process p =Process.Start(new ProcessStartInfo("explorer.exe", $"/select, \" {filename}\""));
+			
+		}
+		
+
+		[DllImport("shell32.dll")]
+		static extern IntPtr ShellExecute
+			(
+			IntPtr hwnd,
+			string lpOperation,
+			string lpFile,
+			string lpParameters,
+			string lpDirectory,
+			int nCmdShow
+			);
+			
 	}
 }
