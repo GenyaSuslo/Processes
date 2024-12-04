@@ -85,7 +85,10 @@ namespace TaskManager
 			processes = Process.GetProcesses().ToDictionary(i => i.Id);
 			AddNewProcesses();
 			RemoveOldProcesses();
-
+		}
+		void DestroyProcess(int pid)
+		{
+			processes[pid].Kill();
 		}
 
 		private void timer_Tick(object sender, EventArgs e)
@@ -110,5 +113,23 @@ namespace TaskManager
 			[In] string promt,
 			[In] uint flags
 			);
+
+		private void destroyToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if(listViewProcesses.SelectedItems.Count>0)
+			DestroyProcess(Convert.ToInt32(listViewProcesses.SelectedItems[0].Name));
+		}
+
+		private void contextMenuProcList_Opening(object sender, CancelEventArgs e)
+		{
+			toolStripMenuItemOpenFileLocation.Enabled =
+			toolStripMenuItemDestroy.Enabled =
+				listViewProcesses.SelectedItems.Count > 0;
+		}
+
+		private void mainMenuTopmost_CheckedChanged(object sender, EventArgs e)
+		{
+			this.TopMost = mainMenuTopmost.Checked;
+		}
 	}
 }
