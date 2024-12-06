@@ -12,16 +12,23 @@ using System.Xml.Schema;
 using System.Runtime.InteropServices;
 using System.Windows.Forms.VisualStyles;
 using System.Net.Configuration;
+using System.Collections;
 
 namespace TaskManager
 {
 	public partial class TaskManager : Form
 	{
 		Dictionary<int, Process> processes;
+
+		ListViewColumnSorter lvColumnSorter;
 		public TaskManager()
 		{
 			InitializeComponent();
 			LoadProcesses();
+			foreach (ColumnHeader ch in this.listViewProcesses.Columns)
+			{
+				ch.Width = -2;
+			}
 		}
 		void LoadProcesses()
 		{
@@ -89,6 +96,10 @@ namespace TaskManager
 			processes = Process.GetProcesses().ToDictionary(i => i.Id);
 			AddNewProcesses();
 			RemoveOldProcesses();
+			//foreach(ColumnHeader ch in this.listViewProcesses.Columns)
+			//{
+			//	ch.Width = -2;
+			//}
 		}
 		void DestroyProcess(int pid)
 		{
@@ -157,6 +168,24 @@ namespace TaskManager
 			string lpDirectory,
 			int nCmdShow
 			);
-			
+		
+		CaseInsensitiveComparer objectCompare;
+		public ListViewColumnsSorter()
+		{
+			columnToSort = 0;
+			orderofSort = SortOrder.None;
+			objectCompare = new CaseInsensitiveComparer();
+		}
+		public int Compare(object x, object y)
+		{
+			ListViewItem listViewX = (ListViewItem)x;
+			ListViewItem listViewy = (ListViewItem)y;
+		}
+		public int SortColumn
+		{
+			get => columnToSort;
+
+		
+		}
 	}
 }
