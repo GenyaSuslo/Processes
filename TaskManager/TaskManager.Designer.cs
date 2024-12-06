@@ -91,19 +91,19 @@
 			// mainMenuFileRun
 			// 
 			this.mainMenuFileRun.Name = "mainMenuFileRun";
-			this.mainMenuFileRun.Size = new System.Drawing.Size(180, 22);
+			this.mainMenuFileRun.Size = new System.Drawing.Size(95, 22);
 			this.mainMenuFileRun.Text = "Run";
 			this.mainMenuFileRun.Click += new System.EventHandler(this.mainMenuFileRun_Click);
 			// 
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(92, 6);
 			// 
 			// mainMenuFileExit
 			// 
 			this.mainMenuFileExit.Name = "mainMenuFileExit";
-			this.mainMenuFileExit.Size = new System.Drawing.Size(180, 22);
+			this.mainMenuFileExit.Size = new System.Drawing.Size(95, 22);
 			this.mainMenuFileExit.Text = "Exit";
 			// 
 			// viewToolStripMenuItem
@@ -234,9 +234,10 @@
 			// 
 			// listViewProcesses
 			// 
+			this.listViewProcesses.AllowColumnReorder = true;
 			this.listViewProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnPID,
-            this.columnName});
+            this.columnName,
+            this.columnPID});
 			this.listViewProcesses.ContextMenuStrip = this.contextMenuProcList;
 			this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.listViewProcesses.FullRowSelect = true;
@@ -266,13 +267,13 @@
             this.toolStripSeparator4,
             this.toolStripMenuItemDestroy});
 			this.contextMenuProcList.Name = "contextMenuStrip1";
-			this.contextMenuProcList.Size = new System.Drawing.Size(181, 76);
+			this.contextMenuProcList.Size = new System.Drawing.Size(169, 54);
 			this.contextMenuProcList.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuProcList_Opening);
 			// 
 			// toolStripMenuItemOpenFileLocation
 			// 
 			this.toolStripMenuItemOpenFileLocation.Name = "toolStripMenuItemOpenFileLocation";
-			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(180, 22);
+			this.toolStripMenuItemOpenFileLocation.Size = new System.Drawing.Size(168, 22);
 			this.toolStripMenuItemOpenFileLocation.Text = "Open file location";
 			this.toolStripMenuItemOpenFileLocation.Click += new System.EventHandler(this.toolStripMenuItemOpenFileLocation_Click);
 			// 
