@@ -51,8 +51,8 @@
 			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabControlProcrsses = new System.Windows.Forms.TabPage();
 			this.listViewProcesses = new System.Windows.Forms.ListView();
-			this.columnPID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.columnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnPID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
 			this.contextMenuProcList = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.toolStripMenuItemOpenFileLocation = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
@@ -251,14 +251,15 @@
 			this.listViewProcesses.TabIndex = 1;
 			this.listViewProcesses.UseCompatibleStateImageBehavior = false;
 			this.listViewProcesses.View = System.Windows.Forms.View.Details;
-			// 
-			// columnPID
-			// 
-			this.columnPID.Text = "PID";
+			this.listViewProcesses.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProcesses_ColumnClick);
 			// 
 			// columnName
 			// 
 			this.columnName.Text = "Name";
+			// 
+			// columnPID
+			// 
+			this.columnPID.Text = "PID";
 			// 
 			// contextMenuProcList
 			// 

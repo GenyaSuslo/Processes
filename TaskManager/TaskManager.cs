@@ -19,16 +19,19 @@ namespace TaskManager
 	public partial class TaskManager : Form
 	{
 		Dictionary<int, Process> processes;
-
 		ListViewColumnSorter lvColumnSorter;
+		
 		public TaskManager()
 		{
 			InitializeComponent();
 			LoadProcesses();
 			foreach (ColumnHeader ch in this.listViewProcesses.Columns)
 			{
-				ch.Width = -2;
+				ch.Width = -1;
 			}
+
+			lvColumnSorter = new ListViewColumnSorter();
+			listViewProcesses.ListViewItemSorter = lvColumnSorter;
 		}
 		void LoadProcesses()
 		{
@@ -94,9 +97,9 @@ namespace TaskManager
 		void RefreshProcesses()
 		{
 			processes = Process.GetProcesses().ToDictionary(i => i.Id);
-			AddNewProcesses();
 			RemoveOldProcesses();
-			//foreach(ColumnHeader ch in this.listViewProcesses.Columns)
+			AddNewProcesses();
+			//foreach (ColumnHeader ch in this.listViewProcesses.Columns)
 			//{
 			//	ch.Width = -2;
 			//}
@@ -168,24 +171,22 @@ namespace TaskManager
 			string lpDirectory,
 			int nCmdShow
 			);
-		
-		CaseInsensitiveComparer objectCompare;
-		public ListViewColumnsSorter()
-		{
-			columnToSort = 0;
-			orderofSort = SortOrder.None;
-			objectCompare = new CaseInsensitiveComparer();
-		}
-		public int Compare(object x, object y)
-		{
-			ListViewItem listViewX = (ListViewItem)x;
-			ListViewItem listViewy = (ListViewItem)y;
-		}
-		public int SortColumn
-		{
-			get => columnToSort;
 
-		
+		private void listViewProcesses_ColumnClick(object sender, ColumnClickEventArgs e)
+		{
+			if (e.Column == lvColumnSorter.SortColumn)
+			{
+				if (lvColumnSorter.Order == SortOrder.Ascending)
+					lvColumnSorter.Order = SortOrder.Descending;
+				else
+					lvColumnSorter.Order = SortOrder.Ascending;
+			}
+			else 
+			{
+				lvColumnSorter.SortColumn = e.Column;
+				lvColumnSorter.Order = SortOrder.Ascending;
+			}
+			this.listViewProcesses.Sort();
 		}
 	}
 }
