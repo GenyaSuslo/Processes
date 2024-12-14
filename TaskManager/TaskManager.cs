@@ -13,6 +13,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms.VisualStyles;
 using System.Net.Configuration;
 using System.Collections;
+using System.Security.Principal;
 
 namespace TaskManager
 {
@@ -77,10 +78,21 @@ namespace TaskManager
 		void AddProcessToListView(Process p)
 		{
 			ListViewItem item = new ListViewItem();
+			item.Name = p.Id.ToString();
 			item.Text = p.ProcessName;
 			//item.Name = item.Text = p.Id.ToString();
-			item.Name = p.Id.ToString();
 			item.SubItems.Add(p.Id.ToString());
+			item.SubItems.Add(GetProcessUser(p));
+			try
+			{
+				item.SubItems.Add(p.MainModule.FileName);
+			}
+			catch (Win32Exception ex)
+			{
+				item.SubItems.Add("");
+				//throw;
+			}
+
 			listViewProcesses.Items.Add(item);
 		}
 		void RemoveOldProcesses()
@@ -187,6 +199,31 @@ namespace TaskManager
 				lvColumnSorter.Order = SortOrder.Ascending;
 			}
 			this.listViewProcesses.Sort();
+		}
+		//Process owner
+		[DllImport("advapi32.dll", SetLastError = true)]
+		static extern bool OpenProcessToken(IntPtr handle, uint DesiredAccess, out IntPtr TokenHandle);
+		[DllImport("kernel32.dll", SetLastError = true)]
+		[return: MarshalAs(UnmanagedType.Bool)]
+		static extern bool CloseHandle(IntPtr hObject);
+		static string GetProcessUser (Process process)
+		{
+			string username = "N/A";
+			IntPtr processHandle = IntPtr.Zero;
+			try
+			{
+				OpenProcessToken(process.Handle, 8, out processHandle);
+				using (WindowsIdentity wi = new WindowsIdentity(processHandle))
+				{
+					username = wi.Name;
+				}
+			}
+			catch (Win32Exception ex )
+			{
+
+			}
+			
+			return username;
 		}
 	}
 }
