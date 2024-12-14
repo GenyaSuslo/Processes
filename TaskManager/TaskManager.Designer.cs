@@ -60,6 +60,9 @@
             this.toolStripMenuItemDestroy = new System.Windows.Forms.ToolStripMenuItem();
             this.Perfomance = new System.Windows.Forms.TabControl();
             this.columnOwner = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.mainMenuViewSelectColumnsPID = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainMenuViewSelectColumnsOwner = new System.Windows.Forms.ToolStripMenuItem();
+            this.mainMenuViewSelectColumnsPath = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControlProcrsses.SuspendLayout();
@@ -144,6 +147,10 @@
             // 
             // mainMenuColumns
             // 
+            this.mainMenuColumns.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainMenuViewSelectColumnsPID,
+            this.mainMenuViewSelectColumnsOwner,
+            this.mainMenuViewSelectColumnsPath});
             this.mainMenuColumns.Name = "mainMenuColumns";
             this.mainMenuColumns.Size = new System.Drawing.Size(190, 22);
             this.mainMenuColumns.Text = "Select columns";
@@ -315,6 +322,27 @@
             // 
             this.columnOwner.Text = "Owner";
             // 
+            // mainMenuViewSelectColumnsPID
+            // 
+            this.mainMenuViewSelectColumnsPID.CheckOnClick = true;
+            this.mainMenuViewSelectColumnsPID.Name = "mainMenuViewSelectColumnsPID";
+            this.mainMenuViewSelectColumnsPID.Size = new System.Drawing.Size(180, 22);
+            this.mainMenuViewSelectColumnsPID.Text = "PID";
+            // 
+            // mainMenuViewSelectColumnsOwner
+            // 
+            this.mainMenuViewSelectColumnsOwner.CheckOnClick = true;
+            this.mainMenuViewSelectColumnsOwner.Name = "mainMenuViewSelectColumnsOwner";
+            this.mainMenuViewSelectColumnsOwner.Size = new System.Drawing.Size(180, 22);
+            this.mainMenuViewSelectColumnsOwner.Text = "Owner";
+            // 
+            // mainMenuViewSelectColumnsPath
+            // 
+            this.mainMenuViewSelectColumnsPath.CheckOnClick = true;
+            this.mainMenuViewSelectColumnsPath.Name = "mainMenuViewSelectColumnsPath";
+            this.mainMenuViewSelectColumnsPath.Size = new System.Drawing.Size(180, 22);
+            this.mainMenuViewSelectColumnsPath.Text = "Path";
+            // 
             // TaskManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,6 +400,9 @@
 		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDestroy;
         private System.Windows.Forms.ColumnHeader columnFilepath;
         private System.Windows.Forms.ColumnHeader columnOwner;
+        private System.Windows.Forms.ToolStripMenuItem mainMenuViewSelectColumnsPID;
+        private System.Windows.Forms.ToolStripMenuItem mainMenuViewSelectColumnsOwner;
+        private System.Windows.Forms.ToolStripMenuItem mainMenuViewSelectColumnsPath;
     }
 }
 
